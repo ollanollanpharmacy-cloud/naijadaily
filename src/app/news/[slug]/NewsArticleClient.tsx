@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
 import Navbar from "@/app/components/Navbar";
+import GoogleAdSense from "@/app/components/GoogleAdSense";
 
 type Props = {
   params: { slug: string };
@@ -173,6 +174,11 @@ export default async function NewsArticlePage({ params }: Props) {
               <div
                 className="prose prose-lg max-w-none leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: sanitizedNewsBody }}
+              />
+              <GoogleAdSense
+                adSlot={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_ARTICLE || "1234567890"}
+                className="w-full"
+                style={{ display: "block" }}
               />
               <div className="mt-8 flex justify-between items-center">
                 <Link

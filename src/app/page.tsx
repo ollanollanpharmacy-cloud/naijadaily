@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../app/components/Navbar";
 import SkeletonLoader from "../app/components/SkeletonLoader";
+import GoogleAdSense from "../app/components/GoogleAdSense";
 import { IoClose } from "react-icons/io5";
 
 // Consistent slug generator — matches your article page exactly
@@ -370,13 +371,11 @@ export default function DailyPostClone() {
                 )}
 
                 {showAd && (
-                  <div className="mt-16 flex justify-center">
-                    <Image
-                      src={ads[Math.floor(Math.random() * ads.length)]}
-                      alt="Advertisement"
-                      width={728}
-                      height={90}
-                      className="rounded-lg shadow-md"
+                  <div className="mt-16">
+                    <GoogleAdSense
+                      adSlot={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_HOME || "1234567890"}
+                      className="w-full"
+                      style={{ display: "block" }}
                     />
                   </div>
                 )}
