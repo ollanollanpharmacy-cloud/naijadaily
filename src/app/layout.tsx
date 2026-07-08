@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Naija Daily",
-    template: "%s | Naija Daily", // This template will be used when child routes don't specify title
+    template: "%s | Naija Daily 11", // This template will be used when child routes don't specify title
   },
   description: "Nigeria's most comprehensive and trusted news source",
   // Keep only the most basic openGraph/twitter metadata here
