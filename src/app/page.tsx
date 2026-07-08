@@ -31,7 +31,7 @@ interface NewsItem {
 
 export default function DailyPostClone() {
   const [darkMode, setDarkMode] = useState(false);
-  const [currentDate, setCurrentDate] = useState(""); // ← Fixed: Now properly declared
+  const [currentDate, setCurrentDate] = useState(""); 
   const [headlines, setHeadlines] = useState<NewsItem[]>([]);
   const [categoryNews, setCategoryNews] = useState<{ [key: string]: NewsItem[] }>({});
   const [categories, setCategories] = useState<string[]>([]);
@@ -309,20 +309,11 @@ export default function DailyPostClone() {
 
             return (
               <section key={category}>
-              <div className="flex justify-between items-center mb-8">
-  <h2 className="text-3xl md:text-4xl font-bold border-b-4 border-red-600 inline-block pb-2">
-    {category}
-  </h2>
-
-  {/* {!isHeadlines && (
-    <Link
-      href={`/category/${encodeURIComponent(category)}`}
-      className="text-red-600 hover:underline font-semibold transition"
-    >
-      See more →
-    </Link>
-  )} */}
-</div>
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-3xl md:text-4xl font-bold border-b-4 border-red-600 inline-block pb-2">
+                    {category}
+                  </h2>
+                </div>
                 {isLoading ? (
                   <SkeletonLoader count={6} darkMode={darkMode} />
                 ) : newsList.length > 0 ? (
@@ -358,24 +349,25 @@ export default function DailyPostClone() {
                     ))}
 
                     {!isHeadlines && (
-    <Link
-      href={`/category/${encodeURIComponent(category)}`}
-      className="text-red-600 hover:underline font-semibold transition"
-    >
-      See more →
-    </Link>
-  )}
+                      <Link
+                        href={`/category/${encodeURIComponent(category)}`}
+                        className="text-red-600 hover:underline font-semibold transition"
+                      >
+                        See more →
+                      </Link>
+                    )}
                   </div>
                 ) : (
                   <p className="text-center py-12 text-gray-500 text-lg">No articles available.</p>
                 )}
 
+                {/* FIXED: Wrap AdSense in a div with predefined bounds to handle responsive sizing safely */}
                 {showAd && (
-                  <div className="mt-16">
+                  <div className="mt-16 w-full min-w-[300px] min-h-[250px] flex justify-center items-center">
                     <GoogleAdSense
                       adSlot={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_SLOT_HOME || "1234567890"}
                       className="w-full"
-                      style={{ display: "block" }}
+                      style={{ display: "block", minWidth: "250px", minHeight: "250px" }}
                     />
                   </div>
                 )}
